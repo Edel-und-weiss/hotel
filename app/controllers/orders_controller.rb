@@ -71,7 +71,8 @@ class OrdersController < ApplicationController
     end
     
     rescue ActiveRecord::StaleObjectError
-			flash[:error] = 'Order edit conflict.'
+			flash[:error] = 'Order edit conflict. Information about order
+											 editing another operator at this moment.'
 			render action: 'edit'
   end
 

@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
   		session[:user_id] = user.id
   		redirect_to admin_url
   	else
-  		redirect_to login_url, alert: "Wrong name/password combination"
+  		redirect_to login_url
+  		flash[:error] = 'Wrong name/password combination'
   	end
   end
 

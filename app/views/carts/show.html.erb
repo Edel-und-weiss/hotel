@@ -16,9 +16,11 @@
   </p>
   </div>
  		
- 		<p><%= button_to '   Checkout   ', new_order_path, method: :get %></p>							
+ 		
+ 		<p><%= button_to 'Checkout', new_order_path, method: :get, 
+ 											:class => 'btn btn-success' %></p>	
   	<p><%= button_to 'Empty R-list', @cart, method: :delete, 
-  		data: {confirm: 'Are you sure?'} %></p>
+  		data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger' %></p>
   
 <% end %>
 

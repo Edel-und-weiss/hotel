@@ -49,6 +49,11 @@ class RoomsController < ApplicationController
         format.json { render json: @room.errors, status: :unprocessable_entity }
       end
     end
+    
+    rescue ActiveRecord::StaleObjectError
+			flash[:error] = 'Room edit conflict. Information about room
+											 editing another operator at this moment.'
+			render action: 'edit'
   end
 
   # DELETE /rooms/1
@@ -69,6 +74,7 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:title, :roomtype, :description, :image_url, :quantity, :price)
+      params.require(:room).permit(:title, :roomtype, :description, :image_url, :quantity, :price,
+      														 :lock_version)
     end
 end

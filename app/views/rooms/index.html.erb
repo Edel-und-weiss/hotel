@@ -17,12 +17,14 @@
             <td class = "title_and_type">
             	<dt><%= room.title %> <%= room.roomtype %></dt>
             	<hr>
-            	<dn> <b>Цена:</b> <%= number_to_currency(room.price, :unit => 'Руб', :format => "%n %u") %>/сутки</dn>
+            	<dn> <b>Цена:</b> <%= number_to_currency(room.price, :unit => 'Руб', 
+            												:format => "%n %u") %>/сутки</dn>
             	<hr>
             	<dn> <b>Количество:</b> <%= room.quantity %></dn>
             </td>
             
-            <td class = "list_description"><u>В номер включено:</u> <%= truncate(strip_tags(room.description), length: 300) %></td>
+            <td class = "list_description"><u>В номер включено:</u> <%= truncate(
+            																	strip_tags(room.description), length: 300) %></td>
          	
             <td class = "list_actions">
             <%= link_to 'Show', room %><br>

@@ -8,11 +8,12 @@ class ApplicationController < ActionController::Base
   
   	def authorize
   		unless User.find_by_id(session[:user_id])
-  			redirect_to login_url, notice: "Please log in"
+  			redirect_to login_url#, notice: "Please log in"
+  			flash[:error] = 'Please log in to access this page'
   		end
   		
   		if User.count.zero?
-    		redirect_to new_user_path, :notice => "Please create a user" 
+    		redirect_to new_user_path, :notice => "Please create a user"
   		end
   	end
   
