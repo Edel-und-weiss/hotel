@@ -1,0 +1,46 @@
+<%= form_for(@order, :html => { :class => "form-horizontal" }) do |f| %>
+  <% if @order.errors.any? %>
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h4>
+
+      <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= f.hidden_field :lock_version %>
+
+  <div class="form-group">
+    <%= f.label :name, :class => "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.text_field :name, size: 40, :class => "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :days, :class => "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.number_field :days, size: 40, :class => "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :email, :class => "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.text_field :email, size: 40, :class => "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :mobile, :class => "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.text_field :mobile, size: 40, :class => "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit 'Place order', :class => "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
