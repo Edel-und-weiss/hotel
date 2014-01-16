@@ -2,24 +2,21 @@ class OrdersController < ApplicationController
 	skip_before_action :authorize, only: [:new, :create]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
-  # GET /orders
-  # GET /orders.json
   def index
     @orders = Order.all
   end
-
-  # GET /orders/1
-  # GET /orders/1.json
+  
   def show
   end
 
-  # GET /orders/new
   def new
   	@cart = current_cart
   	if @cart.line_items.empty?
   		redirect_to store_url, notice: "Your R-list is empty"
   		return
   	end
+  	
+  	
   
     @order = Order.new
     respond_to do |format|
@@ -28,19 +25,27 @@ class OrdersController < ApplicationController
     end
   end
 
-  # GET /orders/1/edit
   def edit	
   end
-  
-  # Метод предназначен для обработки конфликтной ситуации при изменении заказов
-  def conflict
-  end
 
-  # POST /orders
-  # POST /orders.json
   def create
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(current_cart)
+    case
+    	when session[:first_type] == ""
+    		session[:first_type_quant] = 0
+    	when session[:second_type] == ""
+    		session[:second_type_quant] = 0
+    	when session[:third_type] == ""
+    		session[:third_type_quant] = 0
+    end
+    @first_type = "Одноместный cтандарт"
+    @second_type = "Одноместный улучшенный"
+    @third_type = "Двухместный двухкомнатный"
+    @order.reserved_rooms = session[:first_type_quant].to_s + " x " + @first_type + "; " +
+    		session[:second_type_quant].to_s + " x " + @second_type + "; " + 
+    		session[:third_type_quant].to_s + " x " + @third_type;
+
 
     respond_to do |format|
       if @order.save
@@ -56,8 +61,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /orders/1
-  # PATCH/PUT /orders/1.json
   def update
 		
     respond_to do |format|
@@ -76,8 +79,6 @@ class OrdersController < ApplicationController
 			render action: 'edit'
   end
 
-  # DELETE /orders/1
-  # DELETE /orders/1.json
   def destroy
     @order.destroy
     respond_to do |format|
@@ -87,13 +88,11 @@ class OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:name, :days, :email, :mobile, :lock_version)
+      params.require(:order).permit(:name, :date_of_arrival, :date_of_departure, :reserved_rooms, :email, :mobile, :lock_version)
     end
 end

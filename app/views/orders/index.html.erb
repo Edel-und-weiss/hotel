@@ -11,21 +11,22 @@
     <thead>
       <tr>
             <th>Name</th>
-            <th>Days</th>
             <th>Email</th>
             <th>Mobile</th>
-            <th></th>
-        <th></th>
-        <th></th>
+            <th>Arrival date</th>
+            <th>Departure date</th>
+            <th>Reserved rooms</th>
       </tr>
     </thead>
 
     <tbody>
       <%= content_tag_for(:tr, @orders) do |order| %>
             <td><%= order.name %></td>
-            <td><%= order.days %></td>
             <td><%= order.email %></td>
             <td><%= order.mobile %></td>
+            <td><%= order.date_of_arrival %></td>
+            <td><%= order.date_of_departure %></td>
+            <td><%= order.reserved_rooms %></td>
             <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>

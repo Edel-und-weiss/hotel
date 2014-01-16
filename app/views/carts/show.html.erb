@@ -4,7 +4,7 @@
 <h1>Your Reservation-list</h1>
   <ul>
   	<%= content_tag_for(:li, @cart.line_items) do |item| %>
-  		<%= item.quantity_item %> &times; <%= item.room.title %> <%= item.room.roomtype %> - 
+  		<%= item.quantity_item %> &times; <%= item.room.title + " " + item.room.roomtype %> - 
   		<%= number_to_currency(item.total_price,
   																 :unit => 'Руб', :format => "%n %u") %>
   	<% end %>
@@ -13,9 +13,9 @@
   <p><b>Total price(per day):</b>
   <%= number_to_currency(@cart.total_price, 
   																	:unit => 'Руб', :format => "%n %u") %>
+  <% session[:total_price] = @cart.total_price %>
   </p>
   </div>
- 		
  		
  		<p><%= button_to 'Checkout', new_order_path, method: :get, 
  											:class => 'btn btn-success' %></p>	
@@ -24,7 +24,7 @@
   
 <% end %>
 
-<!-- Если корзина пустая, то скажем об этом клиенту -->
+<!-- Если список заказов пуст(R-List), то скажем об этом клиенту -->
 
 <% if @cart.line_items.empty? %>
 <h1>Your Reservation-list is empty!</h1>

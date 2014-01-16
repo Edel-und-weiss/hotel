@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131218144857) do
+ActiveRecord::Schema.define(version: 20140115124735) do
 
   create_table "carts", force: true do |t|
     t.datetime "created_at"
@@ -29,12 +29,14 @@ ActiveRecord::Schema.define(version: 20131218144857) do
 
   create_table "orders", force: true do |t|
     t.string   "name"
-    t.integer  "days"
     t.string   "email"
     t.string   "mobile"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "lock_version", default: 0, null: false
+    t.integer  "lock_version",      default: 0, null: false
+    t.date     "date_of_arrival"
+    t.date     "date_of_departure"
+    t.text     "reserved_rooms"
   end
 
   create_table "rooms", force: true do |t|

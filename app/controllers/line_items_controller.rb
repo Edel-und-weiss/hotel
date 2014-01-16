@@ -2,34 +2,40 @@ class LineItemsController < ApplicationController
 	skip_before_action :authorize, only: :create
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
-  # GET /line_items
-  # GET /line_items.json
   def index
     @line_items = LineItem.all
   end
 
-  # GET /line_items/1
-  # GET /line_items/1.json
   def show
   end
 
-  # GET /line_items/new
   def new
     @line_item = LineItem.new
   end
 
-  # GET /line_items/1/edit
   def edit
   end
 
-  # POST /line_items
-  # POST /line_items.json
   def create
     @cart = current_cart
     room = Room.find(params[:room_id])
     @line_item = @cart.add_room(room.id)
-		
-    respond_to do |format| 
+	 	
+	 	case
+	 		when @line_item.room.title + " " + @line_item.room.roomtype == "Одноместный cтандарт"
+	 			session[:first_type_quant] = @line_item.quantity_item
+	 			session[:first_type] = @line_item.room.title + " " + @line_item.room.roomtype
+	 		when @line_item.room.title + " " + @line_item.room.roomtype == "Одноместный улучшенный"
+	 			session[:second_type_quant] = @line_item.quantity_item
+	 			session[:second_type] = @line_item.room.title + " " + @line_item.room.roomtype
+	 		when @line_item.room.title + " " + @line_item.room.roomtype == "Двухместный двухкомнатный"
+	 			session[:third_type_quant] = @line_item.quantity_item
+	 			session[:third_type] = @line_item.room.title + " " + @line_item.room.roomtype
+	 	end
+	 
+	 #session[:total_price] = @cart.total_price
+	 
+    respond_to do |format|
     	if room.quantity != 0
       	if @line_item.save
       		# при добавлении очередной команты клиентом в свой R-list, 
@@ -49,8 +55,6 @@ class LineItemsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /line_items/1
-  # PATCH/PUT /line_items/1.json
   def update
     respond_to do |format|
       if @line_item.update(line_item_params)
@@ -63,8 +67,6 @@ class LineItemsController < ApplicationController
     end
   end
 
-  # DELETE /line_items/1
-  # DELETE /line_items/1.json
   def destroy
     @line_item.destroy
     respond_to do |format|
@@ -74,12 +76,10 @@ class LineItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_line_item
       @line_item = LineItem.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def line_item_params
       params.require(:line_item).permit(:room_id, :cart_id)
     end

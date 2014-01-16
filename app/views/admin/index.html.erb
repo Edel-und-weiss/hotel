@@ -1,6 +1,7 @@
 <div class="page-header">
   <h1>Welcome!</h1>
 </div>
-Time now: <%= Time.now %>
-<br>
-We have <%= pluralize(@total_orders, "order") %>
+
+<p>You log in as <b><%= @username %></b></p>
+<p>Time now: <%= Time.now %></p>
+<p>We have <%= pluralize(@total_orders, "order") %></p>	
