@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authorize
   protect_from_forgery with: :exception
+  # Trying to deploy with Heroku :)
   
   protected
   
