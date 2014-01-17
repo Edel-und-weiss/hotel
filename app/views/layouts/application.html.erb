@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Бронирование номеров</title>
+  <title>Отель "Edelweiss"</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -36,7 +36,6 @@
           <li><%= link_to "R-list", @cart %></li>   
           <li><%= link_to "About", static_pages_about_path %></li>
         	
-        	<!-- Если сессия админская, то добавляем в навигацию спец. функции -->
           <% if session[:user_id] %>
          		<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">

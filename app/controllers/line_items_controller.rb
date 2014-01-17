@@ -33,13 +33,9 @@ class LineItemsController < ApplicationController
 	 			session[:third_type] = @line_item.room.title + " " + @line_item.room.roomtype
 	 	end
 	 
-	 #session[:total_price] = @cart.total_price
-	 
     respond_to do |format|
     	if room.quantity != 0
       	if @line_item.save
-      		# при добавлении очередной команты клиентом в свой R-list, 
-      		# уменьшаем количество оставшихся номеров
       		room.quantity -= 1
       		room.save
         	format.html { redirect_to @line_item.cart, 

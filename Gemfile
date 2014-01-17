@@ -41,6 +41,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :production do
+	gem 'pg'
+end
+
 gem 'will_paginate'
 
 # Use ActiveModel has_secure_password

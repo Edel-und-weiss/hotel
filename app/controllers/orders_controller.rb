@@ -16,8 +16,6 @@ class OrdersController < ApplicationController
   		return
   	end
   	
-  	
-  
     @order = Order.new
     respond_to do |format|
     	format.html
