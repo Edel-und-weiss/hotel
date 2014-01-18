@@ -12,7 +12,7 @@ Hotel::Application.configure do
 	config.action_mailer.smtp_settings = {
 		address:				"smtp.gmail.com",
 		port:						 587,
-		domain:					"edelweiss1942@gmail.com",
+		domain:					"smtp.gmail.com",
 		authentication: "plain",
 		user_name: 			"edelweiss1942@gmail.com",
 		password:				"gross_Deutschland13thcorps",
