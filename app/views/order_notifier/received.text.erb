@@ -1,0 +1,14 @@
+Dear <%= @order.name %>,
+
+We inform that you have placed an order on the hotel website "Hotel Edelweiss".
+
+There are ordered rooms:
+
+<%= render @order.line_items %>
+
+Thank you for your order!
+
+_____________________________________
+Contact information
+Telephone: (861) 100-00-00
+Web-site:  hotel-edelweiss.heroku.com

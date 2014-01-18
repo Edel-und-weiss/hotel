@@ -43,12 +43,16 @@ class OrdersController < ApplicationController
     @order.reserved_rooms = session[:first_type_quant].to_s + " x " + @first_type + "; " +
     		session[:second_type_quant].to_s + " x " + @second_type + "; " + 
     		session[:third_type_quant].to_s + " x " + @third_type;
-
+    		
+    session[:first_type_quant] = 0
+    session[:second_type_quant] = 0
+		session[:third_type_quant] = 0
 
     respond_to do |format|
       if @order.save
       	Cart.destroy(session[:cart_id])
       	session[:cart_id] = nil
+      	OrderNotifier.received(@order).deliver
         format.html { redirect_to store_url, notice: 'Thank you for your order.' }
         format.json { render json: @order, status: :created, location: @order }
       else
