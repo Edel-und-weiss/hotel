@@ -14,8 +14,8 @@ Hotel::Application.configure do
 		port:						 587,
 		domain:					"hotel-edelweiss.heroku.com",
 		authentication: "plain",
-		user_name: 			"edelweiss1942",
-		password:				"gross_Deutschland13thcorps",
+		user_name: 			"edelweiss1942@gmail.com",
+		password:				ENV['SMTP_PASSWORD'],
 		enable_starttls_auto: true 
 		}
 
