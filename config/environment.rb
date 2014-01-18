@@ -12,10 +12,11 @@ Hotel::Application.configure do
 	config.action_mailer.smtp_settings = {
 		address:				"smtp.gmail.com",
 		port:						 587,
-		domain:					"hotel-edelweiss.heroku.com",
+		domain:					"edelweiss1942@gmail.com",
 		authentication: "plain",
 		user_name: 			"edelweiss1942@gmail.com",
-		password:				ENV['SMTP_PASSWORD'],
+		password:				"gross_Deutschland13thcorps",
+										#ENV['SMTP_PASSWORD']
 		enable_starttls_auto: true 
 		}
 
