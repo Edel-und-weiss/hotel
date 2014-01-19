@@ -5,19 +5,4 @@ require File.expand_path('../application', __FILE__)
 Hotel::Application.initialize!
 
 # Настраиваем конфигурацию для отправки e-mail клиентам
-Hotel::Application.configure do
 
-	config.action_mailer.delivery_method = :smtp
-	
-	config.action_mailer.smtp_settings = {
-		address:				"smtp.gmail.com",
-		port:						 587,
-		domain:					"smtp.gmail.com",
-		authentication: "plain",
-		user_name: 			"edelweiss1942@gmail.com",
-		password:				"gross_Deutschland13thcorps",
-										#ENV['SMTP_PASSWORD']
-		enable_starttls_auto: true 
-		}
-
-end

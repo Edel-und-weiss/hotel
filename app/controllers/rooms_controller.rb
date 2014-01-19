@@ -1,5 +1,12 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
+  
+  def who_ordered
+  	@room = Room.find(params[:id])
+  	respond_to do |format|
+  		format.atom
+  	end
+  end
 
   def index
     @rooms = Room.all
