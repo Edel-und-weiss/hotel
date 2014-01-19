@@ -11,6 +11,6 @@ class Order < ActiveRecord::Base
 		end	
 	end
 	
-	ROOM_QUANTITY = (1..15).to_a
+	#ROOM_QUANTITY = (1..15).to_a
 
 end

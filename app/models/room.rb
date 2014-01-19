@@ -5,6 +5,8 @@ class Room < ActiveRecord::Base
 	
 	before_destroy :ensure_not_referenced_by_any_line_item
 	
+	ROOM_QUANTITY = (1..15).to_a
+	
 	validates :title, :roomtype, :description, :image_url, presence: true
 	validates :price, numericality: {greater_that_or_equal_to: 500.0}
 	validates :quantity, numericality: {greater_than_or_equal_to: 0}
