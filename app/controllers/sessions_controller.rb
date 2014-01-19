@@ -11,12 +11,12 @@ class SessionsController < ApplicationController
   		redirect_to admin_url
   	else
   		redirect_to login_url
-  		flash[:error] = 'Wrong name/password combination'
+  		flash[:error] = 'Неверная комбинация логин/пароль'
   	end
   end
 
   def destroy
   	session[:user_id] = nil
-  	redirect_to store_url, notice: "Session is completed"
+  	redirect_to store_url, notice: "Сессия завершена"
   end
 end
