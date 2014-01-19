@@ -1,20 +1,20 @@
 <div class="page-header">
   <%= link_to users_path, :class => 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
-    Back
+    Назад
   <% end %>
   <%= link_to edit_user_path(@user), :class => 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
-    Edit
+    Изменить
   <% end %>
-  <h1>Show user</h1>
+  <h1>Просмотр</h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt>Name:</dt>
+  <dt>Логин:</dt>
   <dd><%= @user.name %></dd>
 
-  <dt>Password digest:</dt>
+  <dt>Пароль:</dt>
   <dd><%= @user.password_digest %></dd>
 
 </dl>

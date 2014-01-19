@@ -1,14 +1,15 @@
-Dear <%= @order.name %>,
+Уважаемый(-ая) <%= @order.name %>,
 
-We inform that you have placed an order on the hotel website "Hotel Edelweiss".
+Мы информируем вас о том, что вы совершили заказ 
+под номером <%= @order.id %> на веб-сайте отеля "Edelweiss".
 
-There are ordered rooms:
+Номера, которые вы забронировали:
 
 <%= render @order.line_items %>
 
-Thank you for your order!
+Спасибо за ваш заказ!
 
 _____________________________________
-Contact information
-Telephone: (861) 100-00-00
-Web-site:  hotel-edelweiss.heroku.com
+Контактная информация
+Телефон: (861) 100-00-00
+Веб-сайт:  hotel-edelweiss.heroku.com

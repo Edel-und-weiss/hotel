@@ -20,6 +20,10 @@ class LineItemsController < ApplicationController
     @cart = current_cart
     room = Room.find(params[:room_id])
     @line_item = @cart.add_room(room.id)
+    
+    session[:first_type_quant] = 0
+    session[:second_type_quant] = 0
+    session[:third_type_quant] = 0
 	 	
 	 	case
 	 		when @line_item.room.title + " " + @line_item.room.roomtype == "Одноместный cтандарт"
@@ -39,14 +43,14 @@ class LineItemsController < ApplicationController
       		room.quantity -= 1
       		room.save
         	format.html { redirect_to @line_item.cart, 
-        								notice: 'Room was successfully added to your R-list.' }
+        								notice: 'Номер добавлен в список бронирования.' }
         	format.json { render json: @line_item, status: :created, location: @line_item }
       	else
         	format.html { render action: 'new' }
         	format.json { render json: @line_item.errors, status: :unprocessable_entity }
       	end
       else
-      	format.html { redirect_to store_path, notice: 'Sorry, this type of room is left.' }
+      	format.html { redirect_to store_path, notice: 'Извините, этот тип комнат закончился.' }
       end
     end
   end

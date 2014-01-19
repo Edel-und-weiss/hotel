@@ -1,32 +1,32 @@
 <div class="page-header">
   <%= link_to rooms_path, :class => 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
-    Back
+    Назад
   <% end %>
   <%= link_to edit_room_path(@room), :class => 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
-    Edit
+    Изменить
   <% end %>
-  <h1>Show room</h1>
+  <h1>Просмотр номера</h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt>Title:</dt>
+  <dt>Название:</dt>
   <dd><%= @room.title %></dd>
 
-  <dt>Roomtype:</dt>
+  <dt>Тип:</dt>
   <dd><%= @room.roomtype %></dd>
 
-  <dt>Description:</dt>
+  <dt>Описание:</dt>
   <dd><%= @room.description %></dd>
 
-  <dt>Image url:</dt>
+  <dt>URL картинки:</dt>
   <dd><%= @room.image_url %></dd>
 
-  <dt>Quantity:</dt>
+  <dt>Количество:</dt>
   <dd><%= @room.quantity %></dd>
 
-  <dt>Price:</dt>
+  <dt>Цена:</dt>
   <dd><%= @room.price %></dd>
 
 </dl>

@@ -46,16 +46,16 @@
   </div>
   <div class="form-group">
     <div class="col-lg-offset-4">
-      <%= f.submit 'Place order', :class => "btn btn-primary" %>
+      <%= f.submit 'Оформить', :class => "btn btn-primary" %>
     </div>
   </div>
 <% end %>
 
 <hr>
-<b>Total price per day:</b><br>
+<b>Цена/сутки:</b><br>
 <%= number_to_currency(session[:total_price], 
   																	:unit => 'Руб', :format => "%n %u") %><br>
-<b>Total price:</b><div id="days"></div>
+<b>Общая цена:</b><div id="days"></div>
 
 <script type="text/javascript">
 // "JavaScript Форматирование чисел по разрядности"
@@ -127,6 +127,9 @@ function number_format(_number, _cfg){
 			var dep_date = Date.UTC(values.dep_year, values.dep_month, values.dep_day);
 			var days = (dep_date - arr_date)/(1000*60*60*24);
 			var day_price = $('#day_price').val();
+			if (days < 0 ) {
+				days = 0;
+			}
 			var total_price = days * day_price;
 			
 			$('#days').html(number_format(total_price,{after: " Руб"}));

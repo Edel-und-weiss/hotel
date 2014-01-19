@@ -9,15 +9,10 @@ Hotel::Application.routes.draw do
   end
   
   resources :users
-
-  resources :orders
-
+	resources :orders
   resources :line_items
-
   resources :carts
-
   get "store/index"
-  
   resources :rooms do
   	get :who_ordered, on: :member
   end

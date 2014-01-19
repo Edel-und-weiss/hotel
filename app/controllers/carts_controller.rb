@@ -69,7 +69,7 @@ class CartsController < ApplicationController
     
     respond_to do |format|
       format.html { redirect_to store_url,
-        notice: 'Your R-list is currently empty' }
+        notice: 'Список бронирования пуст!' }
       format.json { head :no_content }
     end
   end

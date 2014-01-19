@@ -48,8 +48,8 @@ class RoomsController < ApplicationController
     end
     
     rescue ActiveRecord::StaleObjectError
-			flash[:error] = 'Room edit conflict. Information about room
-											 editing another operator at this moment.'
+			flash[:error] = 'Ошибка при редактировании! В настоящее время информация редактируется
+											 другим оператором.'
 			render action: 'edit'
   end
 
