@@ -15,6 +15,30 @@ class Room < ActiveRecord::Base
 		message: ': Must be a URL for GIF, JPEG, JPG or PNG image'
 	}
 	
+	# Каждый день в 12:00 стартует проверка:
+	# сколько номеров определённого типа освобождается сегодня?
+	# Количество номеров прибавляем к кол-ву свободных номеров этого же типа.
+	def every_day_rooms_control
+		require 'date'
+		@today = Date.today
+		
+		@dep_one = Room.joins(:orders).where("orders.date_of_departure = ? AND title = ? 
+													AND roomtype = ?",@today,'Одноместный','стандарт').count
+		@dep_two = Room.joins(:orders).where("orders.date_of_departure = ? AND title = ? 
+													AND roomtype = ?",@today,'Одноместный','улучшенный').count
+		@dep_three = Room.joins(:orders).where("orders.date_of_departure = ? AND title = ? 
+													AND roomtype = ?",@today,'Двухместный','двухкомнатный').count
+		case
+			when Room.title == 'Одноместный' && Room.roomtype == 'стандарт'
+				Room.quantity = Room.quantity + @dep_one
+			when Room.title == 'Одноместный' && Room.roomtype == 'улучшенный'
+				Room.quantity = Room.quantity + @dep_two
+			when Room.title == 'Двухместный' && Room.roomtype == 'двухкомнатный'
+				Room.quantity = Room.quantity + @dep_three
+		end	 
+	end
+	
+	
 	private
 	
 	def ensure_not_referenced_by_any_line_item

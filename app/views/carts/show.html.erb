@@ -15,6 +15,13 @@
   																	:unit => 'Руб', :format => "%n %u") %>
   <% session[:total_price] = @cart.total_price %>
   </p>
+  <!--
+  <p><b>How session works:</b><br>
+  <%= session[:first_type_quant] %>
+  <%= session[:second_type_quant] %>
+  <%= session[:third_type_quant] %>
+  </p>
+  -->
   </div>
  		
  		<p><%= button_to 'Оформить', new_order_path, method: :get, 

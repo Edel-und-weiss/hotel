@@ -21,9 +21,9 @@ class LineItemsController < ApplicationController
     room = Room.find(params[:room_id])
     @line_item = @cart.add_room(room.id)
     
-    session[:first_type_quant] = 0
-    session[:second_type_quant] = 0
-    session[:third_type_quant] = 0
+    #session[:first_type_quant] = 0
+    #session[:second_type_quant] = 0
+    #session[:third_type_quant] = 0
 	 	
 	 	case
 	 		when @line_item.room.title + " " + @line_item.room.roomtype == "Одноместный cтандарт"
