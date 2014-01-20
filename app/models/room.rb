@@ -22,12 +22,12 @@ class Room < ActiveRecord::Base
 		require 'date'
 		@today = Date.today
 		
-		@dep_one = Room.joins(:orders).where("orders.date_of_departure = ? AND title = ? 
-													AND roomtype = ?",@today,'Одноместный','стандарт').count
-		@dep_two = Room.joins(:orders).where("orders.date_of_departure = ? AND title = ? 
-													AND roomtype = ?",@today,'Одноместный','улучшенный').count
-		@dep_three = Room.joins(:orders).where("orders.date_of_departure = ? AND title = ? 
-													AND roomtype = ?",@today,'Двухместный','двухкомнатный').count
+		@dep_one = Room.joins(:orders).where("orders.date_of_departure = ? AND rooms.title = ? 
+													AND rooms.roomtype = ?",@today,'Одноместный','стандарт').count
+		@dep_two = Room.joins(:orders).where("orders.date_of_departure = ? AND rooms.title = ? 
+													AND rooms.roomtype = ?",@today,'Одноместный','улучшенный').count
+		@dep_three = Room.joins(:orders).where("orders.date_of_departure = ? AND rooms.title = ? 
+													AND rooms.roomtype = ?",@today,'Двухместный','двухкомнатный').count
 		case
 			when Room.title == 'Одноместный' && Room.roomtype == 'стандарт'
 				Room.quantity = Room.quantity + @dep_one
